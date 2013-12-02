@@ -18,5 +18,4 @@ ClassLoader::addClasses(array
 (
 	// Contao
 	'Contao\GravatarInsertTags' => 'system/modules/gravatar/Contao/GravatarInsertTags.php',
-	'Contao\MemberGravatar'     => 'system/modules/gravatar/Contao/MemberGravatar.php',
 ));
