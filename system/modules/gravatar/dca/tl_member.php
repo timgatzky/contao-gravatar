@@ -20,10 +20,13 @@ $GLOBALS['TL_DCA']['tl_member']['palettes']['__selector__'][] = 'gravatar';
 /**
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_member']['palettes']['default'] = str_replace('{account_legend}', '{avatar_legend:hide},gravatarEmail;{account_legend}', $GLOBALS['TL_DCA']['tl_member']['palettes']['default']);
 if( in_array('avatar', \Config::getInstance()->getActiveModules()) )
 {
 	$GLOBALS['TL_DCA']['tl_member']['palettes']['default'] = str_replace('avatar','avatar,gravatarEmail',$GLOBALS['TL_DCA']['tl_member']['palettes']['default']);
+}
+else
+{
+	$GLOBALS['TL_DCA']['tl_member']['palettes']['default'] = str_replace('{account_legend}', '{avatar_legend:hide},gravatarEmail;{account_legend}', $GLOBALS['TL_DCA']['tl_member']['palettes']['default']);
 }
 
 /**
