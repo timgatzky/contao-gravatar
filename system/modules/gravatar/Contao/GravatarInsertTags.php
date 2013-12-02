@@ -47,17 +47,26 @@ class GravatarInsertTags extends \Controller
 				}
 				
 				$email = $this->User->gravatarEmail ? $this->User->gravatarEmail : $this->User->email;
-				$size = $GLOBALS['TL_CONFIG']['gravatarSize'] ? round($GLOBALS['TL_CONFIG']['gravatarSize']) : 80;
-				$default = $GLOBALS['TL_CONFIG']['gravatarDefault'] ? $GLOBALS['TL_CONFIG']['gravatarDefault'] : 'identicon';
-				if($default == 'gravatarlogo')
+				$grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) );
+				$grav_attributes = array
+				(
+					's' => $GLOBALS['TL_CONFIG']['gravatarSize'] ? round($GLOBALS['TL_CONFIG']['gravatarSize']) : 80,
+					'd' => $GLOBALS['TL_CONFIG']['gravatarDefault'] ? $GLOBALS['TL_CONFIG']['gravatarDefault'] : '',
+					'r' => $GLOBALS['TL_CONFIG']['gravatarMaxRating'] ? $GLOBALS['TL_CONFIG']['gravatarMaxRating'] : 'x',
+				);
+				$grav_url .= '?';
+				foreach($grav_attributes as $k => $v)
 				{
-					$default = '';
+					if($v == 'gravatarlogo')
+					{
+						continue;
+					}
+					$grav_url .= $k.'='.$v.'&';
 				}
-				$maxRating = $GLOBALS['TL_CONFIG']['gravatarMaxRating'] ? $GLOBALS['TL_CONFIG']['gravatarSize'] : 'x';
-				$grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size . '&r='.$maxRating;
-				$attributes = 'width="'.$size.'px" height="'.$size.'px"';
-				\FB::log($grav_url);
-				return sprintf('<img src="%s" %s>',$grav_url,$attributes);
+				$grav_url = substr($grav_url, 0,-1);
+				
+				$img_attributes = 'width="'.$size.'px" height="'.$size.'px"' . ' title="'.$this->User->username.'"';
+				return sprintf('<img src="%s" %s>',$grav_url,$img_attributes);
 				break;
 			default:
 				return false;
