@@ -13,7 +13,7 @@
         <source>Please choose the gravatar default size</source>
         <target>Bitte wählen Sie die Gravatar Größe aus. Standard ist 80px</target>
       </trans-unit>
-       <trans-unit id="tl_settings.gravatarMaxRating.0">
+      <trans-unit id="tl_settings.gravatarMaxRating.0">
         <source>Maximum rating level</source>
         <target>Maximale Bewertungs-Einstufung</target>
       </trans-unit>
@@ -26,6 +26,14 @@ Rated PG PG bewertete Gravatare können rüde Gesten, provozierend gekleidete In
 Bewertung: R Mit R bewertete Gravatare können Sachen wie Obszönitäten, starke Gewalt, Nacktheit oder starken Drogenkonsum beinhalten
 
 Bewertung: X Ein mit X bewerteter Gravatar kann Hardcore-Sexbilder oder extreme, verstörende Gewalt enthalten. </target>
+      </trans-unit>
+      <trans-unit id="tl_settings.gravatarDeafult.0">
+        <source>Gravatar Default image</source>
+        <target>Gravatar Standard-Bild</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.gravatarDeafult.1">
+        <source>Please choose the gravatar default image</source>
+        <target>Bitte wählen Sie das Gravatar Standard-Bild, das angezeigt wird, wenn kein gültiger Gravatar-Avatar gefunden wurde.</target>
       </trans-unit>
     </body>
   </file>

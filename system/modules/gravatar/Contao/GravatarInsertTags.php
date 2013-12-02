@@ -48,10 +48,15 @@ class GravatarInsertTags extends \Controller
 				
 				$email = $this->User->gravatarEmail ? $this->User->gravatarEmail : $this->User->email;
 				$size = $GLOBALS['TL_CONFIG']['gravatarSize'] ? round($GLOBALS['TL_CONFIG']['gravatarSize']) : 80;
+				$default = $GLOBALS['TL_CONFIG']['gravatarDefault'] ? $GLOBALS['TL_CONFIG']['gravatarDefault'] : 'identicon';
+				if($default == 'gravatarlogo')
+				{
+					$default = '';
+				}
 				$maxRating = $GLOBALS['TL_CONFIG']['gravatarMaxRating'] ? $GLOBALS['TL_CONFIG']['gravatarSize'] : 'x';
 				$grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size . '&r='.$maxRating;
 				$attributes = 'width="'.$size.'px" height="'.$size.'px"';
-				
+				\FB::log($grav_url);
 				return sprintf('<img src="%s" %s>',$grav_url,$attributes);
 				break;
 			default:

@@ -14,7 +14,7 @@
 /**
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] .= ';{avatar_legend:hide},gravatarSize,gravatarMaxRating;';
+$GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] .= ';{avatar_legend:hide},gravatarSize,gravatarMaxRating,gravatarDefault;';
 
 /**
  * Fields
@@ -33,5 +33,14 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['gravatarMaxRating'] = array
 	'inputType'             => 'select',
 	'default'				=> 'x',
 	'options'				=> array('p','pg','r','x'),
+	'eval'                  => array('tl_class'=>'clr w50'),
+);
+
+$GLOBALS['TL_DCA']['tl_settings']['fields']['gravatarDefault'] = array
+(
+	'label'                 => &$GLOBALS['TL_LANG']['tl_settings']['gravatarDefault'],
+	'inputType'             => 'select',
+	'default'				=> 'x',
+	'options'				=> array('404','gravatarlogo','mm','identicon','monsterid','wavatar'),
 	'eval'                  => array('tl_class'=>'clr w50'),
 );
