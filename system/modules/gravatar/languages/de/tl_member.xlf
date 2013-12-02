@@ -1,0 +1,18 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="system/modules/pct_iconpicker/languages/de/tl_member.php" source-language="de">
+    <body>
+      <trans-unit id="tl_member.avatar_legend">
+        <source>Gravatar settings</source>
+        <target>Gravatar-Einstellungen</target>
+      </trans-unit>
+      <trans-unit id="tl_member.gravatarEmail.0">
+        <source>Gravatar Email</source>
+        <target>Gravatar E-Mail</target>
+      </trans-unit>
+      <trans-unit id="tl_member.gravatarEmail.1">
+        <source>Please enter your gravatar email address. Leave blank if it is the same as your contao account email address.</source>
+        <target>Bitte geben Sie Ihre Gravatar E-Mail-Adresse an. Sie können das Feld leer lassen, um Ihre Mitglieder E-Mail-Adresse zu nutzen.</target>
+      </trans-unit>
+     </body>
+  </file>
+</xliff>

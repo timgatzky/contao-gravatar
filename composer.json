@@ -1,0 +1,44 @@
+{
+	"name":"timgatzky/contao-gravatar",
+	"description":"Contao (> 3.0) extension to pick a font icon for each element.",
+	"keywords":["contao","fonts","gravatar","avatar"],
+	"type":"contao-module",
+	"homepage":"https://github.com/timgatzky/contao-gravatar",
+	"license":"MIT",
+	"authors":
+	[
+		{
+			"name":"Tim Gatzky",
+			"homepage":"http://www.tim-gatzky.de",
+			"role":"Interaction-Designer,Developer"
+		}
+	],
+	"support":
+	{
+		"ticket":"https://premiumcontaothemes.zendesk.com/",
+		"issues":"https://github.com/timgatzky/contao-gravatar/issues",
+		"source":"https://github.com/timgatzky/contao-gravatar"
+	},
+	"require":
+	{
+		"php":">=5.3",
+		"contao/core":">=3",
+		"contao-community-alliance/composer-installer":"*",
+	},
+	"autoload":
+	{
+	},
+	"replace":
+	{
+	},
+	"extra":
+	{
+		"contao":
+		{
+			"sources":
+			{
+				"":"system/modules/gravatar"
+			}
+		}
+	}
+}
