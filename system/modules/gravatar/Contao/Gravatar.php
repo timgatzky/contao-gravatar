@@ -48,7 +48,7 @@ class Gravatar
 		}
 		$grav_url = substr($grav_url, 0,-1);
 		
-		$img_attributes = 'width="'.$grav_attributes['s'].'px" height="'.$grav_attributes['s'].'px"' . ' title="'.$strEmail.'"';
+		$img_attributes = 'width="'.$grav_attributes['s'].'px" height="'.$grav_attributes['s'].'px"' . ' title="'.substr($strEmail,0,strpos($strEmail,'@')).'"';
 		return sprintf('<img src="%s" %s>',$grav_url,$img_attributes);
 	}
 }
