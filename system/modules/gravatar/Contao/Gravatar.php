@@ -24,21 +24,11 @@ namespace Contao;
 class Gravatar
 {
 	/**
-	 * Static method to get the gravatar image
-	 * @param string
-	 * @return string
-	 */
-	public static function get($strEmail)
-	{
-		return self::getGravatar($strEmail);
-	}
-	
-	/**
 	 * Fetch a gravatar from an email and return image
 	 * @param string
 	 * @return string
 	 */
-	protected static function getGravatar($strEmail)
+	public static function get($strEmail)
 	{
 		$grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $strEmail ) ) );
 		$grav_attributes = array

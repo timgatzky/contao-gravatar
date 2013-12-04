@@ -28,11 +28,6 @@ Available inserttags:
 namespace Contao;
 
 /**
- * Imports
- */
-use \Contao\Gravatar as Gravatar;
-
-/**
  * Class file
  * GravatarInsertTags
  */
@@ -51,76 +46,49 @@ class GravatarInsertTags extends \Controller
 		switch($arrElements[0])
 		{
 			case 'gravatar':
-				if($arrElements[1])
+				// {{gravatar}} : return the gravatar for the logged in user
+				if(!$arrElements[1])
 				{
-					// check if an email is given
-					if(strpos($arrElements[1],'@'))
+					if(!FE_USER_LOGGED_IN)
 					{
-						return Gravatar::get($arrElements[1]);
+						return false;
 					}
-					
-					// check for member/user reference
-					switch($arrElements[1])
-					{
-						case 'member':
-							$objDatabase = \Database::getInstance();
-							
-							// fetch from id
-							if(is_numeric($arrElements[2]))
-							{
-								$objUser = $objDatabase->prepare("SELECT * FROM tl_member WHERE id=?")->limit(1)->execute($arrElements[2]);
-							}
-							// fetch from username
-							else if(is_string($arrElements[2]))
-							{
-								$objUser = $objDatabase->prepare("SELECT * FROM tl_member WHERE username=?")->limit(1)->execute($arrElements[2]);
-							}
-							else {return false;}
-							
-							if($objUser->numRows < 1)
-							{
-								return false;
-							}
-							
-							return Gravatar::get($objUser->email);
-							break;
-						case 'user':
-							$objDatabase = \Database::getInstance();
-							
-							// fetch from id
-							if(is_numeric($arrElements[2]))
-							{
-								$objUser = $objDatabase->prepare("SELECT * FROM tl_user WHERE id=?")->limit(1)->execute($arrElements[2]);
-							}
-							// fetch from username
-							else if(is_string($arrElements[2]))
-							{
-								$objUser = $objDatabase->prepare("SELECT * FROM tl_user WHERE username=?")->limit(1)->execute($arrElements[2]);
-							}
-							else {return false;}
-							
-							if($objUser->numRows < 1)
-							{
-								return false;
-							}
-							
-							return Gravatar::get($objUser->email);
-							break;
-						default: 
-							return false;
-							break;
-					}
+						
+					$this->import('FrontendUser','User');
+					$email = $this->User->gravatarEmail ? $this->User->gravatarEmail : $this->User->email;
+					return Gravatar::get($email);
 				}
 				
-				if(!FE_USER_LOGGED_IN)
+				// check if an email is given
+				if(strpos($arrElements[1],'@'))
+				{
+					return Gravatar::get($arrElements[1]);
+				}
+				
+				// check for member/user reference
+				$strTable = '';
+				if($arrElements[1] == 'member') {$strTable = 'tl_member';}
+				else if($arrElements[1] == 'user') {$strTable = 'tl_user';}
+				else {return false;}
+				
+				// fetch from id
+				if(is_numeric($arrElements[2]))
+				{
+					$objUser = \Database::getInstance()->prepare("SELECT * FROM ".$strTable." WHERE id=?")->limit(1)->execute($arrElements[2]);
+				}
+				// fetch from username
+				else if(is_string($arrElements[2]))
+				{
+					$objUser = \Database::getInstance()->prepare("SELECT * FROM ".$strTable." WHERE username=?")->limit(1)->execute($arrElements[2]);
+				}
+				else {return false;}
+				
+				if($objUser->numRows < 1)
 				{
 					return false;
 				}
-					
-				$this->import('FrontendUser','User');
 				
-				$email = $this->User->gravatarEmail ? $this->User->gravatarEmail : $this->User->email;
-				
+				$email = $objUser->gravatarEmail ? $objUser->gravatarEmail : $objUser->email;
 				return Gravatar::get($email);
 				break;
 			default:
